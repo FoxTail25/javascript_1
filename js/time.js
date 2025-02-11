@@ -1,3 +1,5 @@
+// имопортируем класс для работы с localStorage
+import { local_storage_work } from './local_stor.js';
 
 // доступ к input
 const input_time = document.getElementById('input_time');
@@ -12,21 +14,26 @@ const hours_left = document.getElementById('hours_left');
 const minut_left = document.getElementById('minut_left');
 
 
-
-const current_time = {
-	hour: '',
-	minutes: ''
-}
 const timer_time = {
 	hour: '',
 	minutes: ''
 }
 
-let timer; // переменная в которой будет храниться таймер
+let timer; // переменная в которой будет храниться таймер setInterval
 
 // добавления слушателя на кнопку установки времени.
 set_time_btn.addEventListener('click', check_time);
 
+let localStor_time = local_storage_work.get_record()
+
+if (localStor_time) {
+	timer_time.hour = localStor_time.hour;
+	timer_time.minutes = localStor_time.minutes;
+	set_input_time()
+	get_current_time()
+}
+
+// функция проверки корректности введённого времени.
 function check_time() {
 	let answer;
 	input_time.value === ''
@@ -44,8 +51,9 @@ function make_time_from_string(string) {
 	let [hour, minutes] = string.split(':');
 	timer_time.hour = hour;
 	timer_time.minutes = minutes;
+	
 	console.log(timer_time);
-	timer = setInterval(get_current_time, 1000)
+	get_current_time()
 }
 
 function get_current_time() {
@@ -54,7 +62,19 @@ function get_current_time() {
 	const mounth = date_now.getMonth()
 	const date = date_now.getDate()
 
-	const date_timer = new Date(year, mounth, date, timer_time.hour, timer_time.minutes);
+	timer_time.date_timer = new Date(year, mounth, date, timer_time.hour, timer_time.minutes);
+
+	local_storage_work.set_record(timer_time)
+	timer = setInterval(coundown, 1000)
+}
+
+function coundown() {
+
+	let date_now = new Date()
+
+	let date_timer = timer_time.date_timer;
+
+	// console.log(date_now, date_timer, date_now < date_timer)
 
 	if (date_now < date_timer) {
 
@@ -64,11 +84,16 @@ function get_current_time() {
 
 		hours_left.textContent = diff_hour
 		minut_left.textContent = diff_minut
-		
+
 	} else {
 		clearInterval(timer)
 		minut_left.textContent = '0';
 		console.log('таймер остановлен')
 	}
 
+}
+
+function set_input_time() {
+	
+	input_time.value = [timer_time.hour, timer_time.minutes].join(':')
 }
