@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/index.css">
 	<title>Таймер до конца рабочего дня</title>
 </head>
+
 <body>
 	<header>
-		Таймер до конца рабочего дня
+		<div class="container">
+			<h1>
+				Таймер до конца рабочего дня
+			</h1>
+		</div>
 	</header>
 	<main>
-		<h1>Установите время окончания рабочего дня</h1>
-		<input type="time" id="input_time"> 
-		<button id="set_time_btn">Установить время окончани</button>
-		<h2>
-			До конца рабочего дня осталось:
-		</h2>
-		<span id="hours_left">...</span>
-		<span id="hours_left_text">часов</span>
-		<span id="minut_left">...</span>
-		<span id="minut_left_text">минут</span>
+		<div class="container">
+
+			<h2>Установите время окончания рабочего дня</h2>
+			<input type="time" id="input_time">
+			<button id="set_time_btn">Установить время окончани</button>
+			<h2>
+				До конца рабочего дня осталось:
+			</h2>
+			<div class="timer_block">
+				<span id="hours_left">...</span>
+				<span id="hours_left_text">часов</span>
+				<span id="minut_left">...</span>
+				<span id="minut_left_text">минут</span>
+			</div>
+		</div>
 	</main>
+	<footer>
+		<div class="container">
+			<div class="footer">
+				<div class="copyright">©</div>
+				<div class="author">FoxTail25</div>
+				<div class="year">2025</div>
+			</div>
+		</div>
+	</footer>
 
 	<script src="./js/time.js" type="module"></script>
 </body>
+
 </html>

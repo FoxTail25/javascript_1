@@ -1,0 +1,23 @@
+@import url(./normalize.css);
+@import url(./index/variable.css);
+@import url(./index/header.css);
+@import url(./index/main.css);
+@import url(./index/footer.css);
+
+*, h1 {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+.container {
+	max-width: 1024px;
+	margin: 0 auto;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	
+	
+}

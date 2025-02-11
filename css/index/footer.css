@@ -1,0 +1,7 @@
+footer {
+	background: var(--color_4)
+}
+.footer {
+	display: flex;
+	justify-content: space-between;
+}
