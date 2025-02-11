@@ -29,8 +29,8 @@ let localStor_time = local_storage_work.get_record()
 if (localStor_time) {
 	timer_time.hour = localStor_time.hour;
 	timer_time.minutes = localStor_time.minutes;
-	set_input_time()
-	get_current_time()
+	set_input_time() // добавляем время из localStor в инпут
+	get_current_time() // Запускаем таймер
 }
 
 // функция проверки корректности введённого времени.
@@ -43,7 +43,7 @@ function check_time() {
 	if (!isNaN(answer.slice(0, 1))) {
 		make_time_from_string(answer)
 	} else {
-		console.log(answer)
+		console.log('!!!!!!!!!!!!!!',answer) // это надо убрать!
 	}
 }
 
@@ -52,7 +52,7 @@ function make_time_from_string(string) {
 	timer_time.hour = hour;
 	timer_time.minutes = minutes;
 	
-	console.log(timer_time);
+	// console.log(timer_time);
 	get_current_time()
 }
 
@@ -71,7 +71,6 @@ function get_current_time() {
 function coundown() {
 
 	let date_now = new Date()
-
 	let date_timer = timer_time.date_timer;
 
 	// console.log(date_now, date_timer, date_now < date_timer)
@@ -94,6 +93,5 @@ function coundown() {
 }
 
 function set_input_time() {
-	
 	input_time.value = [timer_time.hour, timer_time.minutes].join(':')
 }
