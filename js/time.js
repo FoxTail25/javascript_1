@@ -16,6 +16,12 @@ const minutLeft = document.getElementById('minut_left');
 // доступ к спану с двоеточием для добавления/удаления класса с анимацией
 const colon = document.getElementById('colon');
 
+// доступ к блоку таймера
+const timerBlock = document.querySelector('.timer_block')
+// доступ к блоку окончания
+const endBlock = document.querySelector('.end_block')
+const audio = document.getElementById('audio')
+
 const timerTime = {
 	hour: '',
 	minutes: ''
@@ -85,6 +91,7 @@ function coundown() {
 		hoursLeft.textContent = diff_hour;
 		minutLeft.textContent = diff_minut;
 
+		endTimer()
 		
 		
 	} else {
@@ -92,10 +99,22 @@ function coundown() {
 		minutLeft.textContent = '0';
 		console.log('таймер остановлен')
 		colon.classList.remove('colon_anim');
+		endTimer('off')
 	}
 
 }
 
 function setInputTime() {
 	inputTime.value = [timerTime.hour, timerTime.minutes].join(':')
+}
+
+function endTimer(string) {
+	if(string == 'off') {
+		timerBlock.style.display = 'none';
+		endBlock.style.display = 'block'
+		audio.play()
+	} else {
+		timerBlock.style.display = 'flex';
+		endBlock.style.display = 'none'	
+	}
 }
