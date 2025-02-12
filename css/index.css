@@ -3,6 +3,7 @@
 @import url(./index/header.css);
 @import url(./index/main.css);
 @import url(./index/footer.css);
+@import url(./index/popup.css);
 
 *, h1 {
 	margin:0;

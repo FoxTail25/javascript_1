@@ -22,6 +22,11 @@ const timerBlock = document.querySelector('.timer_block')
 const endBlock = document.querySelector('.end_block')
 const audio = document.getElementById('audio')
 
+// доступ к popup
+const popUp = document.getElementById('popup_bg')
+// доступ к popup_btn
+const popUpBtn = document.getElementById('poup_btn')
+
 const timerTime = {
 	hour: '',
 	minutes: ''
@@ -31,6 +36,10 @@ let timer; // переменная в которой будет хранитьс
 
 // добавления слушателя на кнопку установки времени.
 setTimeBtn.addEventListener('click', checkTime);
+// добавление слушателя на кнопку в popUp
+popUpBtn.addEventListener('click', function() {
+	popUp.style.display = 'none'
+})
 
 let localStorTime = localStorageWork.getRecord()
 
@@ -51,7 +60,8 @@ function checkTime() {
 	if (!isNaN(answer.slice(0, 1))) {
 		makeTimeFromString(answer)
 	} else {
-		console.log('!!!!!!!!!!!!!!',answer) // это надо убрать!
+		// console.log('!!!!!!!!!!!!!!',answer) // это надо убрать!
+		popUp.style.display = 'block'
 	}
 }
 
@@ -86,7 +96,7 @@ function coundown() {
 
 		let diff = (date_timer - date_now);
 		let diff_hour = Math.trunc(diff / (1000 * 60 * 60));
-		let diff_minut = Math.ceil((diff - diff_hour * (1000 * 60 * 60)) / (1000 * 60));
+		let diff_minut = Math.floor((diff - diff_hour * (1000 * 60 * 60)) / (1000 * 60));
 
 		hoursLeft.textContent = diff_hour;
 		minutLeft.textContent = diff_minut;
@@ -97,7 +107,6 @@ function coundown() {
 	} else {
 		clearInterval(timer)
 		minutLeft.textContent = '0';
-		console.log('таймер остановлен')
 		colon.classList.remove('colon_anim');
 		endTimer('off')
 	}

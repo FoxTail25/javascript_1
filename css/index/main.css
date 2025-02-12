@@ -1,72 +1,82 @@
 main {
-	background:var(--color_2);
-	flex:1;
-
+  background: var(--color_2);
+  flex: 1;
 }
 
 .main {
-	&>* {
-		width: fit-content;
-		margin:0 auto;
-		text-align: center;
-	}
-	h2 {
-		margin-top: 20px;
-	}
+  & > * {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .set_block_header {
+      margin-top: 20px;
+    }
 
-	#input_time,button#set_time_btn {
-		border-radius: 10px;
-	}
-	#input_time {
-		width: calc(100% - 60px);
-		font-size: 40px;
-		margin:20px 30px 0 30px;
-		background:var(--color_6);
-		border: none;
-		
-	}
-	button#set_time_btn {
-		display: block;
-		margin: 0 auto;
-		margin-top: 20px;
-		padding: 10px;
-		background:var(--color_4);
-		box-shadow: 3px 5px 10px var(--color_6);
-		border: 1px solid var(--color_3)
-	}
-	.timer_block {
-		display: flex;
-		margin-top: 20px;
+    #input_time,
+    button#set_time_btn {
+      border-radius: 10px;
+    }
+    #input_time {
+      width: calc(100% - 60px);
+      font-size: 40px;
+      margin: 20px 30px 0 30px;
+      background: var(--color_6);
+      border: none;
+    }
+    button#set_time_btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      background: var(--color_4);
+      box-shadow: 3px 5px 10px var(--color_6);
+      border: 1px solid var(--color_3);
+      transition: 0.1s;
 
-		.hour, .minuts {
-			display: flex;
-			flex-direction: column;
-		}
-		#hours_left,#minut_left,#colon,.end_block {
-			font-size: 50px;
-		}
-	}
+      &:hover {
+        margin-top: 22px;
+        margin-bottom: 18px;
+        box-shadow: 3px 3px 8px var(--color_6);
+      }
+    }
+  
+  .timer_block {
+    display: flex;
+    margin-top: 20px;
+
+    .hour,
+    .minuts {
+      display: flex;
+      flex-direction: column;
+    }
+    #hours_left,
+    #minut_left,
+    #colon,
+    .end_block {
+      font-size: 50px;
+    }
+  }
 }
 
 .colon_anim {
-	animation: up_down 1s infinite ;
+  animation: up_down 1s infinite;
 }
 .end_block {
-	display: none;
-	color: red;
-	margin-top: 30px;
-	font-size: 30px;
-	font-weight: 800;
+  display: none;
+  color: red;
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 800;
 }
 
 @keyframes up_down {
-	0% {
-		transform: scaleX(100%);
-	}
-	50% {
-		transform: scaleX(0%);
-	}
-	100% {
-		transform: scaleX(100%)
-	}
+  0% {
+    transform: scaleX(100%);
+  }
+  50% {
+    transform: scaleX(0%);
+  }
+  100% {
+    transform: scaleX(100%);
+  }
 }
