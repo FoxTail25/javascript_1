@@ -3,3 +3,14 @@ main {
 	flex:1;
 
 }
+
+.main {
+	&>* {
+		width: fit-content;;
+		margin:0 auto;
+	}
+}
+
+.end_block {
+	display: none;
+}
