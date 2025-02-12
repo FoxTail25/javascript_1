@@ -96,8 +96,10 @@ function coundown() {
 
 		let diff = (date_timer - date_now);
 		let diff_hour = Math.trunc(diff / (1000 * 60 * 60));
-		let diff_minut = Math.floor((diff - diff_hour * (1000 * 60 * 60)) / (1000 * 60));
-
+		let diff_minut = Math.ceil((diff - diff_hour * (1000 * 60 * 60)) / (1000 * 60));
+		if(diff_minut == 60) {
+			diff_minut = 59;
+		}
 		hoursLeft.textContent = diff_hour;
 		minutLeft.textContent = diff_minut;
 
@@ -122,6 +124,7 @@ function endTimer(string) {
 		timerBlock.style.display = 'none';
 		endBlock.style.display = 'block'
 		audio.play()
+		audio.addEventListener('ended', audio.onpause())
 	} else {
 		timerBlock.style.display = 'flex';
 		endBlock.style.display = 'none'	
