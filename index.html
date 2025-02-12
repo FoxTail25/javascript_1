@@ -1,50 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- мета -->
+	<meta name="description" content="Таймер до конца рабочего дня" /> 
+	<meta name="keywords" content="Таймер, отсчёт времени, конец дня, рабочий день." /> 
+	<!--  -->
 
-	<link rel="stylesheet" href="./css/index.css">
-	<title>Таймер до конца рабочего дня</title>
-</head>
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!--  -->
 
-<body>
-	<header>
-		<div class="container">
-			<h1>
-				Таймер до конца рабочего дня
-			</h1>
-		</div>
-	</header>
-	<main>
-		<div class="container">
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Таймер до конца рабочего дня</title>
+  </head>
 
-			<h2>Установите время окончания рабочего дня</h2>
-			<input type="time" id="input_time">
-			<button id="set_time_btn">Установить время окончани</button>
-			<h2>
-				До конца рабочего дня осталось:
-			</h2>
-			<div class="timer_block">
-				<span id="hours_left">...</span>
-				<span id="hours_left_text">часов</span>
-				<span id="minut_left">...</span>
-				<span id="minut_left_text">минут</span>
-			</div>
-		</div>
-	</main>
-	<footer>
-		<div class="container">
-			<div class="footer">
-				<div class="copyright">©</div>
-				<div class="author">FoxTail25</div>
-				<div class="year">2025</div>
-			</div>
-		</div>
-	</footer>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Таймер до конца рабочего дня</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="main">
+          <h2>Установите время окончания рабочего дня</h2>
+          <input type="time" id="input_time" />
+          <button id="set_time_btn">Установить время окончани</button>
+          <h2>До конца рабочего дня осталось:</h2>
+          <div class="timer_block">
+            <span id="hours_left">...</span>
+            <span id="hours_left_text">часов</span>
+            <span id="minut_left">...</span>
+            <span id="minut_left_text">минут</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="footer">
+          <div class="copyright">©</div>
+          <div class="author">FoxTail25</div>
+          <div class="year">2025</div>
+        </div>
+      </div>
+    </footer>
 
-	<script src="./js/time.js" type="module"></script>
-</body>
-
+    <script src="./js/time.js" type="module"></script>
+  </body>
 </html>
