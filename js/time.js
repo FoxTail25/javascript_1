@@ -1,20 +1,22 @@
 // имопортируем класс для работы с localStorage
-import { local_storage_work } from './local_stor.js';
+import { localStorageWork } from './local_stor.js';
 
 // доступ к input
-const input_time = document.getElementById('input_time');
+const inputTime = document.getElementById('input_time');
 
 // доступ к кнопке установки таймера
-const set_time_btn = document.getElementById('set_time_btn');
+const setTimeBtn = document.getElementById('set_time_btn');
 
 // доступ к спану с оставшимися часами
-const hours_left = document.getElementById('hours_left');
+const hoursLeft = document.getElementById('hours_left');
 
 // доступ к спану с оставшимися минутами
-const minut_left = document.getElementById('minut_left');
+const minutLeft = document.getElementById('minut_left');
 
+// доступ к спану с двоеточием для добавления/удаления класса с анимацией
+const colon = document.getElementById('colon');
 
-const timer_time = {
+const timerTime = {
 	hour: '',
 	minutes: ''
 }
@@ -22,58 +24,57 @@ const timer_time = {
 let timer; // переменная в которой будет храниться таймер setInterval
 
 // добавления слушателя на кнопку установки времени.
-set_time_btn.addEventListener('click', check_time);
+setTimeBtn.addEventListener('click', checkTime);
 
-let localStor_time = local_storage_work.get_record()
+let localStorTime = localStorageWork.getRecord()
 
-if (localStor_time) {
-	timer_time.hour = localStor_time.hour;
-	timer_time.minutes = localStor_time.minutes;
-	set_input_time() // добавляем время из localStor в инпут
-	get_current_time() // Запускаем таймер
+if (localStorTime) {
+	timerTime.hour = localStorTime.hour;
+	timerTime.minutes = localStorTime.minutes;
+	setInputTime() // добавляем время из localStor в инпут
+	getCurrentTime() // Запускаем таймер
 }
 
 // функция проверки корректности введённого времени.
-function check_time() {
+function checkTime() {
 	let answer;
-	input_time.value === ''
+	inputTime.value === ''
 		? answer = 'время установленно не верно'
-		: answer = input_time.value;
+		: answer = inputTime.value;
 
 	if (!isNaN(answer.slice(0, 1))) {
-		make_time_from_string(answer)
+		makeTimeFromString(answer)
 	} else {
 		console.log('!!!!!!!!!!!!!!',answer) // это надо убрать!
 	}
 }
 
-function make_time_from_string(string) {
+function makeTimeFromString(string) {
 	let [hour, minutes] = string.split(':');
-	timer_time.hour = hour;
-	timer_time.minutes = minutes;
+	timerTime.hour = hour;
+	timerTime.minutes = minutes;
 	
 	// console.log(timer_time);
-	get_current_time()
+	getCurrentTime()
 }
 
-function get_current_time() {
+function getCurrentTime() {
 	const date_now = new Date()
 	const year = date_now.getFullYear()
 	const mounth = date_now.getMonth()
 	const date = date_now.getDate()
 
-	timer_time.date_timer = new Date(year, mounth, date, timer_time.hour, timer_time.minutes);
+	timerTime.date_timer = new Date(year, mounth, date, timerTime.hour, timerTime.minutes);
 
-	local_storage_work.set_record(timer_time)
-	timer = setInterval(coundown, 1000)
+	localStorageWork.setRecord(timerTime);
+	colon.classList.add('colon_anim');
+	timer = setInterval(coundown, 1000);
 }
 
 function coundown() {
 
 	let date_now = new Date()
-	let date_timer = timer_time.date_timer;
-
-	// console.log(date_now, date_timer, date_now < date_timer)
+	let date_timer = timerTime.date_timer;
 
 	if (date_now < date_timer) {
 
@@ -81,17 +82,20 @@ function coundown() {
 		let diff_hour = Math.trunc(diff / (1000 * 60 * 60));
 		let diff_minut = Math.ceil((diff - diff_hour * (1000 * 60 * 60)) / (1000 * 60));
 
-		hours_left.textContent = diff_hour
-		minut_left.textContent = diff_minut
+		hoursLeft.textContent = diff_hour;
+		minutLeft.textContent = diff_minut;
 
+		
+		
 	} else {
 		clearInterval(timer)
-		minut_left.textContent = '0';
+		minutLeft.textContent = '0';
 		console.log('таймер остановлен')
+		colon.classList.remove('colon_anim');
 	}
 
 }
 
-function set_input_time() {
-	input_time.value = [timer_time.hour, timer_time.minutes].join(':')
+function setInputTime() {
+	inputTime.value = [timerTime.hour, timerTime.minutes].join(':')
 }

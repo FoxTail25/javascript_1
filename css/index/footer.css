@@ -4,4 +4,36 @@ footer {
 .footer {
 	display: flex;
 	justify-content: space-between;
+	align-items:center;
+	font-size: 20px;
+	max-width: 500px;
+	margin: 0 auto;
+
+	.copyright, .author, .year {
+		flex: 1;
+	}
+	.copyright {
+		padding-left: 5px;
+	}
+
+	.author {
+		display: flex;
+		align-items: center;
+		padding: 5px;
+		justify-content: center;
+		.author_git, .author_telegram {
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			margin-left: 5px;
+			background: no-repeat url(../../img/ico/github-brands-solid.svg) center /contain;
+		}
+		.author_telegram {
+			background: no-repeat url(../../img/ico/telegram-brands-solid.svg) center /contain;
+		}
+	}
+	.year {
+		text-align: end;
+		padding-right: 5px;
+	}
 }

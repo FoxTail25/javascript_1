@@ -6,11 +6,63 @@ main {
 
 .main {
 	&>* {
-		width: fit-content;;
+		width: fit-content;
 		margin:0 auto;
+		text-align: center;
+	}
+	h2 {
+		margin-top: 20px;
+	}
+
+	#input_time,button#set_time_btn {
+		border-radius: 10px;
+	}
+	#input_time {
+		width: calc(100% - 60px);
+		font-size: 40px;
+		margin:20px 30px 0 30px;
+		background:var(--color_6);
+		border: none;
+		
+	}
+	button#set_time_btn {
+		display: block;
+		margin: 0 auto;
+		margin-top: 20px;
+		padding: 10px;
+		background:var(--color_4);
+		box-shadow: 3px 5px 10px var(--color_6);
+		border: 1px solid var(--color_3)
+	}
+	.timer_block {
+		display: flex;
+		margin-top: 20px;
+
+		.hour, .minuts {
+			display: flex;
+			flex-direction: column;
+		}
+		#hours_left,#minut_left,#colon,.end_block {
+			font-size: 50px;
+		}
 	}
 }
 
+.colon_anim {
+	animation: up_down 1s infinite ;
+}
 .end_block {
 	display: none;
+}
+
+@keyframes up_down {
+	0% {
+		transform: scaleX(100%);
+	}
+	50% {
+		transform: scaleX(0%);
+	}
+	100% {
+		transform: scaleX(100%)
+	}
 }

@@ -1,18 +1,18 @@
 
-class local_stor {
+class localStor {
 	constructor(name) {
 		this.name = name
 	}
-	set_record(data) {
-		localStorage.setItem(this.name, this._get_string(data))
+	setRecord(data) {
+		localStorage.setItem(this.name, this._getString(data))
 	}
-	get_record() {
-		return this._check_writer(this.name)
-			? this._get_parse(localStorage.getItem(this.name))
+	getRecord() {
+		return this._checkRecord(this.name)
+			? this._getParse(localStorage.getItem(this.name))
 			: false
 	}
 
-	_check_writer(name) {
+	_checkRecord(name) {
 		let answer;
 		try {
 			localStorage.getItem(name);
@@ -22,12 +22,12 @@ class local_stor {
 		}
 		return answer
 	}
-	_get_string(data) {
+	_getString(data) {
 		return JSON.stringify(data)
 	}
-	_get_parse(data) {
+	_getParse(data) {
 		return JSON.parse(data)
 	}
 }
 
-export const local_storage_work = new local_stor('timer_record')
+export const localStorageWork = new localStor('timer_record')
