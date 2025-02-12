@@ -124,7 +124,6 @@ function endTimer(string) {
 		timerBlock.style.display = 'none';
 		endBlock.style.display = 'block'
 		audio.play()
-		audio.addEventListener('ended', audio.onpause())
 	} else {
 		timerBlock.style.display = 'flex';
 		endBlock.style.display = 'none'	
